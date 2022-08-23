@@ -1,4 +1,4 @@
-// IMPORTS AND VARIABLES ------------
+// IMPORTS & VARIABLES ------------
 const express = require('express');
 const app = express()   // create an express app
 const PORT = 5000   // use variable to enable easy change
@@ -16,10 +16,18 @@ const userDataMatch = (obj, field) => {
     return result
 }    
 
-    // check if username and password of object matches 
+    // login attempt with submitted username and password
 const loginSuccess = (attempted) => {
-    const userData = users.find(item => item["username"] === attempted["username"])
-    const result = attempted["password"] === userData["password"]
+    let result = false
+
+    // return the registered user with matching username
+    const registered = users.find(item => item["username"] === attempted["username"])
+
+    // if it is registered, try if password matches
+    if (registered) {
+        result = attempted["password"] === registered["password"]
+    }
+
     return result
 }    
 
@@ -46,7 +54,7 @@ app.post('/signup', (req, res) => {
         success: false
     }
 
-    // if username and email are not already in use: set {success: true} and save user data
+    //if username and email are not already in use: set {success: true} and save user data
     if (!resObj.usernameExists && !resObj.emailExists){
         resObj.success = true
         users.push(user)
