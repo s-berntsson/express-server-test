@@ -2,8 +2,7 @@
 const express = require('express');
 const app = express()   // create an express app
 const PORT = 5000   // use variable to enable easy change
-let users = require('./initial-data.json')  //import initial data
-
+let users = require('./initial-data.json')  // initial data
 
 // MIDDLEWARE -------
 app.use(express.json())
@@ -31,18 +30,16 @@ const loginSuccess = (attempted) => {
     return result
 }    
 
-
 // ENDPOINT LOGIN ---------
 app.post('/login', (req, res) => {
     const user = req.body
-    const login = {
+    const resObj = {
         success: loginSuccess(user)
     }
-    const status = login.success ? 200 : 401
+    const status = resObj.success ? 200 : 401
 
-    res.status(status).send({success: loginSuccess(user)})
+    res.status(status).send(resObj)
 })
-
 
 // ENDPOINT SIGNUP ---------
 app.post('/signup', (req, res) => {
