@@ -36,7 +36,7 @@ fetch('http://localhost:5000/todos', {
 
 // en liten funktion som hindrar att man lägger till samma objekt flera ggr
 const containsObj = (array, obj, key) => {
-    const result = array.find(item => item[key] === obj[key])
+    const result = array.some(item => item[key] === obj[key])
     return result
 }
 
