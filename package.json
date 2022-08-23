@@ -1,0 +1,15 @@
+{
+  "name": "express-server-test",
+  "version": "1.0.0",
+  "description": "Learning Express",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sanna",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
